@@ -94,8 +94,8 @@
 		C2E99F61277970B00039985B /* OnboardingScreen */ = {
 			isa = PBXGroup;
 			children = (
-				C2E99F62277970B00039985B /* OnboardingScreenApp.swift */,
 				C2E99F64277970B00039985B /* ContentView.swift */,
+				C2E99F62277970B00039985B /* OnboardingScreenApp.swift */,
 				C2E99F66277970C90039985B /* Assets.xcassets */,
 				C2E99F68277970C90039985B /* Preview Content */,
 			);
