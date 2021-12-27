@@ -7,32 +7,39 @@
 
 import SwiftUI
 
+var totalViews = 3
+
 struct ContentView: View {
-    @AppStorage("isHome") var currentPage = false
+    @AppStorage("currentView") var currentView = 1
     
     var body: some View {
-        if currentPage != true {
+        
+        if currentView == 1 {
             WalkthroughScreen(
                 title: "Connect with tourists",
                 description: "Connect with people of faith locally & globally. Discover Chat & Engage",
                 bgColor: "PastelColor",
                 img: "onboarding-1"
             )
-            
+                .transition(.opacity)
+        } else if currentView == 2 {
             WalkthroughScreen(
                 title: "Discover new things",
                 description: "Explore new things through our app. DIscover initiary & other stuffs",
                 bgColor: "VilvetColor",
                 img: "onboarding-2"
             )
-            
+        } else if currentView == 3 {
             WalkthroughScreen(
                 title: "Share your moments",
                 description: "Share you trip initiary with others. Let’s make the travel fun & enoyable",
                 bgColor: "OrangeColor",
                 img: "onboarding-3"
             )
-        } else {
+        }
+        
+        
+        if currentView == 4 {
             Home()
         }
         
@@ -56,6 +63,9 @@ struct Home: View {
 
 
 struct WalkthroughScreen: View {
+    
+    @AppStorage("currentView") var currentView = 1
+    
     var title: String
     var description: String
     var bgColor: String
@@ -70,7 +80,9 @@ struct WalkthroughScreen: View {
                         .fontWeight(.bold)
                     Spacer()
                     Button(
-                        action:{},
+                        action:{
+                            currentView = 4
+                        },
                         label: {
                             Text("Skip")
                                 .foregroundColor(Color.white)
@@ -98,18 +110,48 @@ struct WalkthroughScreen: View {
                 .padding()
                 .overlay(
                     HStack{
-                        ContainerRelativeShape()
-                            .foregroundColor(.white)
-                            .frame(width: 25, height: 5)
-                        ContainerRelativeShape()
-                            .foregroundColor(.white.opacity(0.5))
-                            .frame(width: 25, height: 5)
-                        ContainerRelativeShape()
-                            .foregroundColor(.white.opacity(0.5))
-                            .frame(width: 25, height: 5)
+                        
+                        if currentView == 1 {
+                            ContainerRelativeShape()
+                                .foregroundColor(.white)
+                                .frame(width: 25, height: 5)
+                        } else {
+                            ContainerRelativeShape()
+                                .foregroundColor(.white.opacity(0.5))
+                                .frame(width: 25, height: 5)
+                        }
+                        
+                        if currentView == 2 {
+                            ContainerRelativeShape()
+                                .foregroundColor(.white)
+                                .frame(width: 25, height: 5)
+                        } else {
+                            ContainerRelativeShape()
+                                .foregroundColor(.white.opacity(0.5))
+                                .frame(width: 25, height: 5)
+                        }
+                        
+                        if currentView == 3 {
+                            ContainerRelativeShape()
+                                .foregroundColor(.white)
+                                .frame(width: 25, height: 5)
+                        } else {
+                            ContainerRelativeShape()
+                                .foregroundColor(.white.opacity(0.5))
+                                .frame(width: 25, height: 5)
+                        }
+                        
                         Spacer()
                         Button(
-                            action:{},
+                            action:{
+                                withAnimation(.easeOut) {
+                                    if currentView <= totalViews || currentView == 2 {
+                                        currentView += 1
+                                    } else if currentView == 3 {
+                                        currentView = 1
+                                    }
+                                }
+                            },
                             label: {
                                 Image(systemName: "chevron.right")
                                     .foregroundColor(Color.white)
