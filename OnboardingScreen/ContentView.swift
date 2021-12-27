@@ -8,15 +8,34 @@
 import SwiftUI
 
 struct ContentView: View {
-    @AppStorage("isHome") var currentPage = true
+    @AppStorage("isHome") var currentPage = false
     
     var body: some View {
-        WalkthroughScreen(
-            title: "Connect with tourists",
-            description: "Connect with people of faith locally & globally. Discover Chat & Engage",
-            bgColor: "PastelColor",
-            img: "onboarding-1"
-        )
+        if currentPage != true {
+            WalkthroughScreen(
+                title: "Connect with tourists",
+                description: "Connect with people of faith locally & globally. Discover Chat & Engage",
+                bgColor: "PastelColor",
+                img: "onboarding-1"
+            )
+            
+            WalkthroughScreen(
+                title: "Discover new things",
+                description: "Explore new things through our app. DIscover initiary & other stuffs",
+                bgColor: "VilvetColor",
+                img: "onboarding-2"
+            )
+            
+            WalkthroughScreen(
+                title: "Share your moments",
+                description: "Share you trip initiary with others. Let’s make the travel fun & enoyable",
+                bgColor: "OrangeColor",
+                img: "onboarding-3"
+            )
+        } else {
+            Home()
+        }
+        
     }
 }
 
