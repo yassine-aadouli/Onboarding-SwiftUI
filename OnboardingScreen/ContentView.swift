@@ -55,7 +55,7 @@ struct ContentView_Previews: PreviewProvider {
 
 struct Home: View {
     var body: some View {
-        Text("Welcom to Home!!")
+        Text("Welcome to Home!!")
             .font(.title)
             .padding()
     }
